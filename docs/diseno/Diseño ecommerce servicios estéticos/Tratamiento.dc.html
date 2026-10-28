@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Protocolo · 2skin</title>
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/borders.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/motion.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/base.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/css/components.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/styles.css">
+  <script src="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/_ds_bundle.js"></script>
+  <script src="site.js"></script>
+  <style>
+    body { margin: 0; background: var(--cream); color: var(--charcoal); font-family: var(--font-ui); }
+    a { color: var(--charcoal); }
+    a:hover { color: var(--color-accent-strong); }
+    .ic { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.05; stroke-linecap: round; stroke-linejoin: round; flex: 0 0 auto; }
+    .g-pdp { display: grid; grid-template-columns: 6fr 6fr; gap: 60px; align-items: start; }
+    .g-half { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 56px; align-items: start; }
+    .card-img { overflow: hidden; border-radius: 4px; }
+    .card-img img { transition: transform .32s cubic-bezier(.2,.8,.2,1); }
+    a:hover .card-img img { transform: scale(1.02); }
+    @media (max-width: 980px) { .g-pdp, .g-half { grid-template-columns: minmax(0,1fr); gap: 32px; } }
+  </style>
+</helmet>
+
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: var(--cream);">
+  <dc-import name="SiteHeader" active="tratamientos" hint-size="100%,84px"></dc-import>
+
+  <main style="flex: 1 1 auto; padding: 40px 0 112px;">
+    <div class="container">
+      <p class="caption" style="margin: 0 0 28px; color: var(--color-text-muted);"><a href="Inicio.dc.html" style="text-decoration: none;">Inicio</a> · <a href="Tratamientos.dc.html" style="text-decoration: none;">Tratamientos</a> · {{ name }}</p>
+
+      <div class="g-pdp">
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <figure class="tsk-media tsk-media--landscape" style="margin: 0;"><img src="{{ img }}" alt="{{ name }}"></figure>
+          <div style="display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px;">
+            <figure class="tsk-media tsk-media--square" style="margin: 0;"><img src="img/clinica-1.jpg" alt="Preparación del insumo en consulta"></figure>
+            <figure class="tsk-media tsk-media--square" style="margin: 0;"><img src="img/clinica-4.jpg" alt="Producto y trazabilidad de lote"></figure>
+            <figure class="tsk-media tsk-media--square" style="margin: 0;"><img src="img/textura-1.jpg" alt="Detalle de calidad de piel"></figure>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <span class="tsk-badge">{{ cat }}</span>
+            <span class="tsk-badge tsk-badge--sage">{{ demand }}</span>
+          </div>
+          <h1 class="h1" style="margin: 0; display: flex; align-items: center; gap: 14px;"><svg class="ic" style="width: 28px; height: 28px; color: var(--sage);"><use href="{{ icon }}"></use></svg>{{ name }}</h1>
+          <p class="body-l" style="margin: 0; color: var(--color-text-secondary); max-width: 44ch;">{{ lead }}</p>
+
+          <sc-if value="{{ hasUnit }}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; align-items: baseline; gap: 12px; border-top: 1px solid var(--charcoal); border-bottom: 1px solid var(--color-border-subtle); padding: 16px 0;">
+              <span style="font-family: var(--font-display); font-size: 32px; line-height: 1;">{{ unitLabel }}</span>
+              <span class="body-s" style="color: var(--color-text-secondary);">{{ unitNote }}</span>
+            </div>
+          </sc-if>
+
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <p class="tsk-eyebrow" style="margin: 0;">Precios de referencia · sin IVA</p>
+            <sc-for list="{{ variants }}" as="v" hint-placeholder-count="4">
+              <button onClick="{{ v.pick }}" style="display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; width: 100%; padding: 18px 20px; background: {{ v.bg }}; border: 1px solid {{ v.border }}; border-radius: 4px; text-align: left; cursor: pointer; font-family: var(--font-ui);">
+                <span style="display: flex; gap: 14px; align-items: flex-start;">
+                  <span aria-hidden="true" style="width: 16px; height: 16px; margin-top: 3px; border-radius: 999px; border: 1px solid {{ v.ring }}; background: {{ v.dot }}; flex: 0 0 auto;"></span>
+                  <span style="display: flex; flex-direction: column; gap: 6px;">
+                    <span class="body" style="color: var(--charcoal);">{{ v.name }}</span>
+                    <span class="body-s" style="color: var(--color-text-secondary);">{{ v.detail }}</span>
+                  </span>
+                </span>
+                <span class="body" style="white-space: nowrap; color: var(--charcoal);">{{ v.priceLabel }}</span>
+              </button>
+            </sc-for>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <button onClick="{{ book }}" class="tsk-btn tsk-btn--primary" style="width: 100%;"><span class="tsk-btn__label">{{ bookLabel }}</span></button>
+            <sc-if value="{{ canAdd }}" hint-placeholder-val="{{ true }}">
+              <button onClick="{{ add }}" class="tsk-btn tsk-btn--secondary" style="width: 100%;"><span class="tsk-btn__label">{{ addLabel }}</span></button>
+            </sc-if>
+            <sc-if value="{{ added }}" hint-placeholder-val="{{ false }}">
+              <a href="Carrito.dc.html" style="display: flex; align-items: center; gap: 10px; padding: 14px 16px; background: var(--color-accent-soft); border-radius: 4px; text-decoration: none; font-size: 15px;">
+                <svg class="ic" style="color: var(--charcoal);"><use href="#i-check"></use></svg>
+                Añadido a tu reserva · continuar
+                <svg class="ic" style="margin-left: auto;"><use href="#i-arrow"></use></svg>
+              </a>
+            </sc-if>
+          </div>
+
+          <div style="display: flex; gap: 14px; align-items: flex-start; background: #FFFFFF; border: 1px solid var(--color-border-subtle); border-radius: 4px; padding: 18px 20px;">
+            <svg class="ic" style="color: var(--sage); margin-top: 2px;"><use href="#i-shield"></use></svg>
+            <p class="body-s" style="margin: 0; color: var(--charcoal);">{{ notice }}</p>
+          </div>
+
+          <div style="display: flex; flex-direction: column;">
+            <sc-for list="{{ facts }}" as="f" hint-placeholder-count="5">
+              <div style="display: flex; justify-content: space-between; gap: 20px; padding: 14px 0; border-bottom: 1px solid var(--color-border-subtle);">
+                <span class="caption" style="text-transform: uppercase; letter-spacing: .05em; color: var(--color-text-muted);">{{ f.k }}</span>
+                <span class="body-s" style="text-align: right; max-width: 28ch;">{{ f.v }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <section style="margin-top: 96px; border-top: 1px solid var(--color-border-subtle); padding-top: 56px;">
+        <div class="g-half">
+          <div>
+            <p class="tsk-eyebrow">Antes de proponer</p>
+            <h2 class="h3" style="margin: 12px 0 0; max-width: 20ch;">Qué evaluamos en tu caso.</h2>
+          </div>
+          <div style="display: flex; flex-direction: column;">
+            <sc-for list="{{ evalua }}" as="e" hint-placeholder-count="4">
+              <div style="display: flex; gap: 20px; padding: 16px 0; border-bottom: 1px solid var(--color-border-subtle);">
+                <span class="caption" style="color: var(--color-text-muted); min-width: 24px;">{{ e.n }}</span>
+                <span class="body" style="color: var(--color-text-secondary);">{{ e.t }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <sc-if value="{{ hasQue }}" hint-placeholder-val="{{ false }}">
+        <section style="margin-top: 80px;">
+          <div class="g-half">
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <p class="tsk-eyebrow">Qué es</p>
+              <p class="body-l" style="margin: 0; max-width: 46ch;">{{ que }}</p>
+              <p class="body-s" style="margin: 0; color: var(--color-text-secondary); max-width: 52ch;"><span style="color: var(--charcoal);">Zonas:</span> {{ zonasTxt }}</p>
+            </div>
+            <div style="display: flex; flex-direction: column;">
+              <p class="tsk-eyebrow" style="margin: 0 0 12px;">No está indicado si</p>
+              <sc-for list="{{ noIndicado }}" as="n" hint-placeholder-count="3">
+                <div style="display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--color-border-subtle);">
+                  <svg class="ic" style="width: 16px; height: 16px; color: var(--sage); margin-top: 3px;"><use href="#i-minus"></use></svg>
+                  <span class="body-s" style="color: var(--color-text-secondary);">{{ n }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{ hasExtra }}" hint-placeholder-val="{{ true }}">
+        <section style="margin-top: 80px;">
+          <div class="g-half">
+            <div style="display: flex; flex-direction: column; gap: 18px;">
+              <p class="tsk-eyebrow" style="margin: 0;">Qué es</p>
+              <p class="body" style="margin: 0; max-width: 54ch;">{{ que }}</p>
+              <div style="border-top: 1px solid var(--color-border-subtle); padding-top: 16px;">
+                <span class="caption" style="display: block; text-transform: uppercase; letter-spacing: .05em; color: var(--color-text-muted); margin-bottom: 6px;">Zonas</span>
+                <span class="body-s" style="color: var(--color-text-secondary);">{{ zonasTxt }}</span>
+              </div>
+            </div>
+            <div style="background: #FFFFFF; border: 1px solid var(--color-border-subtle); border-radius: 8px; padding: 32px;">
+              <p class="tsk-eyebrow" style="margin: 0 0 16px;">No está indicado si</p>
+              <sc-for list="{{ noIndicado }}" as="x" hint-placeholder-count="3">
+                <div style="display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--color-border-subtle);">
+                  <span aria-hidden="true" style="color: var(--color-text-muted);">—</span>
+                  <span class="body-s" style="color: var(--color-text-secondary);">{{ x }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </section>
+        <section style="margin-top: 80px;">
+          <p class="tsk-eyebrow">Contraindicaciones</p>
+          <h2 class="h3" style="margin: 12px 0 32px; max-width: 26ch;">Cuándo no lo aplicamos.</h2>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px;">
+            <sc-for list="{{ contra }}" as="c" hint-placeholder-count="2">
+              <div style="border-top: 1px solid var(--charcoal); padding-top: 16px;">
+                <h3 class="body" style="margin: 0 0 8px; font-weight: 500;">{{ c.t }}</h3>
+                <sc-for list="{{ c.items }}" as="i">
+                  <p class="body-s" style="margin: 0; padding: 8px 0; border-bottom: 1px solid var(--color-border-subtle); color: var(--color-text-secondary);">{{ i }}</p>
+                </sc-for>
+              </div>
+            </sc-for>
+          </div>
+        </section>
+      </sc-if>
+
+      <section style="margin-top: 80px;">
+        <p class="tsk-eyebrow">El proceso</p>
+        <h2 class="h3" style="margin: 12px 0 40px; max-width: 24ch;">Cómo se desarrolla el protocolo.</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 32px;">
+          <sc-for list="{{ pasos }}" as="s" hint-placeholder-count="4">
+            <div style="display: flex; flex-direction: column; gap: 12px; border-top: 1px solid var(--charcoal); padding-top: 18px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+                <span class="caption" style="text-transform: uppercase; letter-spacing: .05em; color: var(--color-text-muted);">{{ s.when }}</span>
+                <svg class="ic" style="width: 17px; height: 17px; color: var(--sage);"><use href="#i-clock"></use></svg>
+              </div>
+              <h3 class="body" style="margin: 0; font-weight: 500;">{{ s.title }}</h3>
+              <p class="body-s" style="margin: 0; color: var(--color-text-secondary);">{{ s.body }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <sc-if value="{{ hasEtapas }}" hint-placeholder-val="{{ false }}">
+        <section style="margin-top: 80px;">
+          <p class="tsk-eyebrow">Recuperación</p>
+          <h2 class="h3" style="margin: 12px 0 32px; max-width: 26ch;">Qué esperar según lo que tratamos.</h2>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px;">
+            <sc-for list="{{ etapas }}" as="c" hint-placeholder-count="2">
+              <div style="border-top: 1px solid var(--charcoal); padding-top: 16px;">
+                <h3 class="body" style="margin: 0 0 8px; font-weight: 500;">{{ c.t }}</h3>
+                <sc-for list="{{ c.items }}" as="i">
+                  <p class="body-s" style="margin: 0; padding: 8px 0; border-bottom: 1px solid var(--color-border-subtle); color: var(--color-text-secondary);">{{ i }}</p>
+                </sc-for>
+              </div>
+            </sc-for>
+          </div>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{ hasExtra }}" hint-placeholder-val="{{ true }}">
+        <section style="margin-top: 80px;">
+          <div class="g-half">
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <p class="tsk-eyebrow" style="margin: 0;">Producto y marcas</p>
+              <h2 class="h3" style="margin: 0; max-width: 20ch;">Qué usamos y por qué.</h2>
+              <sc-if value="{{ eleccion }}"><p class="body-s" style="margin: 0; color: var(--color-text-secondary); max-width: 46ch;">{{ eleccion }}</p></sc-if>
+              <p class="body-s" style="margin: 0; color: var(--color-text-secondary); max-width: 46ch;">{{ presentacion }}</p>
+              <p class="body-s" style="margin: 0; max-width: 46ch;">{{ trazabilidad }}</p>
+              <div style="border-top: 1px solid var(--color-border-subtle); padding-top: 16px;">
+                <span class="caption" style="display: block; text-transform: uppercase; letter-spacing: .05em; color: var(--color-text-muted); margin-bottom: 10px;">Se combina con</span>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                  <sc-for list="{{ combos }}" as="k" hint-placeholder-count="3">
+                    <span class="tsk-badge">{{ k }}</span>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column;">
+              <sc-for list="{{ marcasInfo }}" as="m" hint-placeholder-count="3">
+                <div style="padding: 16px 0; border-top: 1px solid var(--color-border-subtle); display: flex; flex-direction: column; gap: 4px;">
+                  <div style="display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: baseline;">
+                    <span class="body" style="font-weight: 500;">{{ m.n }}</span>
+                    <span class="caption" style="color: var(--color-text-muted);">{{ m.lab }}</span>
+                  </div>
+                  <span class="body-s" style="color: var(--color-text-secondary);">{{ m.uso }}</span>
+                  <span class="caption" style="color: var(--color-text-muted);">INVIMA {{ m.invima }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </section>
+      </sc-if>
+
+      <section style="margin-top: 80px;">
+        <div class="g-half">
+          <div style="background: #FFFFFF; border: 1px solid var(--color-border-subtle); border-radius: 8px; padding: 32px;">
+            <p class="tsk-eyebrow" style="margin: 0 0 20px; display: flex; align-items: center; gap: 10px;"><svg class="ic" style="width: 17px; height: 17px; color: var(--sage);"><use href="#i-check"></use></svg>Qué incluye</p>
+            <div style="display: flex; flex-direction: column;">
+              <sc-for list="{{ incluye }}" as="i" hint-placeholder-count="4">
+                <div style="display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--color-border-subtle);">
+                  <svg class="ic" style="width: 16px; height: 16px; color: var(--sage); margin-top: 3px;"><use href="#i-arrow"></use></svg>
+                  <span class="body-s">{{ i }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="background: #FFFFFF; border: 1px solid var(--color-border-subtle); border-radius: 8px; padding: 32px;">
+            <p class="tsk-eyebrow" style="margin: 0 0 20px; display: flex; align-items: center; gap: 10px;"><svg class="ic" style="width: 17px; height: 17px; color: var(--sage);"><use href="#i-shield"></use></svg>Consideraciones clínicas</p>
+            <div style="display: flex; flex-direction: column;">
+              <sc-for list="{{ avisos }}" as="a" hint-placeholder-count="4">
+                <div style="display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--color-border-subtle);">
+                  <span aria-hidden="true" style="color: var(--color-text-muted);">·</span>
+                  <span class="body-s" style="color: var(--color-text-secondary);">{{ a }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <p class="caption" style="margin: 20px 0 0;">{{ trazaCaption }}</p>
+          </div>
+        </div>
+      </section>
+
+      <sc-if value="{{ hasEtapas }}" hint-placeholder-val="{{ false }}">
+        <section style="margin-top: 80px;">
+          <p class="tsk-eyebrow">Recuperación según la lesión</p>
+          <h2 class="h3" style="margin: 12px 0 40px; max-width: 26ch;">Qué esperar semana a semana.</h2>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 32px;">
+            <sc-for list="{{ etapas }}" as="g" hint-placeholder-count="4">
+              <div style="border-top: 1px solid var(--charcoal); padding-top: 18px; display: flex; flex-direction: column; gap: 10px;">
+                <h3 class="body" style="margin: 0; font-weight: 500;">{{ g.t }}</h3>
+                <sc-for list="{{ g.items }}" as="i">
+                  <p class="body-s" style="margin: 0; color: var(--color-text-secondary);">{{ i }}</p>
+                </sc-for>
+              </div>
+            </sc-for>
+          </div>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{ hasContra }}" hint-placeholder-val="{{ false }}">
+        <section style="margin-top: 80px;">
+          <p class="tsk-eyebrow">Seguridad</p>
+          <h2 class="h3" style="margin: 12px 0 40px; max-width: 24ch;">Contraindicaciones.</h2>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 32px;">
+            <sc-for list="{{ contra }}" as="c" hint-placeholder-count="2">
+              <div style="border-top: 1px solid var(--color-border-subtle); padding-top: 18px; display: flex; flex-direction: column; gap: 8px;">
+                <h3 class="body" style="margin: 0 0 4px; font-weight: 500;">{{ c.t }}</h3>
+                <sc-for list="{{ c.items }}" as="i">
+                  <p class="body-s" style="margin: 0; color: var(--color-text-secondary);">{{ i }}</p>
+                </sc-for>
+              </div>
+            </sc-for>
+          </div>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{ hasMarcas }}" hint-placeholder-val="{{ false }}">
+        <section style="margin-top: 80px;">
+          <div class="g-half">
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <p class="tsk-eyebrow">Producto y marcas</p>
+              <h2 class="h3" style="margin: 0; max-width: 20ch;">Qué usamos y cómo se elige.</h2>
+              <p class="body-s" style="margin: 0; color: var(--color-text-secondary); max-width: 44ch;">{{ eleccion }}</p>
+              <p class="body-s" style="margin: 0; color: var(--color-text-secondary); max-width: 44ch;"><span style="color: var(--charcoal);">Presentación:</span> {{ presentacion }}</p>
+              <p class="body-s" style="margin: 0; color: var(--color-text-secondary); max-width: 44ch;"><span style="color: var(--charcoal);">Trazabilidad:</span> {{ trazabilidad }}</p>
+              <div style="margin-top: 8px;">
+                <p class="tsk-eyebrow" style="margin: 0 0 10px;">Se combina con</p>
+                <sc-for list="{{ combos }}" as="k" hint-placeholder-count="3">
+                  <p class="body-s" style="margin: 0; padding: 8px 0; border-bottom: 1px solid var(--color-border-subtle);">{{ k }}</p>
+                </sc-for>
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column;">
+              <sc-for list="{{ marcasInfo }}" as="m" hint-placeholder-count="3">
+                <div style="padding: 16px 0; border-top: 1px solid var(--color-border-subtle); display: flex; flex-direction: column; gap: 4px;">
+                  <div style="display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+                    <span class="body" style="font-weight: 500;">{{ m.n }}</span>
+                    <span class="caption" style="color: var(--color-text-muted);">INVIMA {{ m.invima }}</span>
+                  </div>
+                  <span class="caption" style="text-transform: uppercase; letter-spacing: .05em; color: var(--color-text-muted);">{{ m.lab }}</span>
+                  <span class="body-s" style="color: var(--color-text-secondary);">{{ m.uso }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </section>
+      </sc-if>
+
+      <section style="margin-top: 80px;">
+        <div class="g-half">
+          <div style="display: flex; flex-direction: column; gap: 20px;">
+            <p class="tsk-eyebrow">Un caso</p>
+            <h2 class="h3" style="margin: 0; max-width: 20ch;">{{ caseTitle }}</h2>
+            <p class="body-s" style="margin: 0; color: var(--color-text-secondary); max-width: 40ch;">{{ caseNote }}</p>
+            <a href="Resultados.dc.html" class="tsk-btn tsk-btn--text" style="text-decoration: none; align-self: flex-start;"><span class="tsk-btn__label">Ver más casos</span><span class="tsk-btn__arrow" aria-hidden="true">→</span></a>
+          </div>
+          <x-import component-from-global-scope="Ds2skinDesignSystem_023a03.BeforeAfter" before-src="{{ caseBefore }}" after-src="{{ caseAfter }}" context="{{ caseContext }}" protocol="{{ caseProtocol }}" elapsed="{{ caseElapsed }}" hint-size="100%,420px"></x-import>
+        </div>
+      </section>
+
+      <section style="margin-top: 80px;">
+        <div class="g-half">
+          <div>
+            <p class="tsk-eyebrow">Dudas frecuentes</p>
+            <h2 class="h3" style="margin: 12px 0 0; max-width: 18ch;">Lo que más nos preguntan.</h2>
+            <a href="Preguntas.dc.html" class="tsk-btn tsk-btn--text" style="text-decoration: none; margin-top: 20px;"><span class="tsk-btn__label">Todas las preguntas</span><span class="tsk-btn__arrow" aria-hidden="true">→</span></a>
+          </div>
+          <x-import component-from-global-scope="Ds2skinDesignSystem_023a03.Accordion" items="{{ faq }}" default-open="{{ zero }}" hint-size="100%,320px"></x-import>
+        </div>
+      </section>
+
+      <section style="margin-top: 96px; border-top: 1px solid var(--color-border-subtle); padding-top: 40px;">
+        <h2 class="h3" style="margin: 0 0 32px;">Protocolos relacionados</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 32px;">
+          <sc-for list="{{ related }}" as="r" hint-placeholder-count="3">
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <x-import component-from-global-scope="Ds2skinDesignSystem_023a03.TreatmentCard" name="{{ r.name }}" category="{{ r.cat }}" image="{{ r.img }}" image-alt="{{ r.name }}" href="{{ r.href }}" cta="Ver protocolo" hint-size="100%,300px"></x-import>
+              <span class="body-s" style="color: var(--color-text-secondary);">{{ r.fromLabel }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <dc-import name="SiteFooter" hint-size="100%,640px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { slug: null, variant: null, added: false };
+
+  componentDidMount() {
+    if (!window.SITE) { setTimeout(() => this.componentDidMount(), 60); return; }
+    this.sync();
+    this._h = () => this.sync();
+    window.addEventListener("hashchange", this._h);
+  }
+  componentWillUnmount() { window.removeEventListener("hashchange", this._h); }
+  sync() {
+    const s = window.SITE.param("p") || "toxina-botulinica";
+    const p = window.SITE.bySlug(s) ? s : "toxina-botulinica";
+    this.setState({ slug: p, variant: null, added: false });
+    document.title = window.SITE.bySlug(p).name + " · 2skin";
+  }
+
+  renderVals() {
+    const S = window.SITE;
+    if (!S || !this.state.slug) return { zero: 0 };
+    const self = this, COP = S.COP;
+    const p = S.bySlug(this.state.slug);
+    const vid = this.state.variant || p.variants[0].id;
+    const v = p.variants.filter(x => x.id === vid)[0] || p.variants[0];
+
+    return {
+      zero: 0,
+      name: p.name, cat: p.cat, demand: p.demand, lead: p.lead, img: p.img, icon: "#i-" + p.icon,
+      hasUnit: !!p.unitPrice,
+      unitLabel: p.unitPrice ? COP(p.unitPrice) : "",
+      unitNote: p.unitNote || "",
+      variants: p.variants.map(x => ({
+        name: x.name, detail: x.detail, priceLabel: S.priceLabel(x.price),
+        bg: x.id === vid ? "#FFFFFF" : "transparent",
+        border: x.id === vid ? "var(--charcoal)" : "var(--color-border-subtle)",
+        ring: x.id === vid ? "var(--charcoal)" : "var(--color-border-default)",
+        dot: x.id === vid ? "var(--sage)" : "transparent",
+        pick: () => self.setState({ variant: x.id, added: false })
+      })),
+      isVal: p.slug === "valoracion",
+      bookLabel: p.slug === "valoracion" ? "Agendar " + v.name.toLowerCase() + " · " + COP(v.price) : "Primera vez · agendar valoración · " + COP(S.VALORACION),
+      book: () => { S.addToCart({ id: p.slug === "valoracion" ? v.id : "val-pres", slug: "valoracion", type: "protocolo", qty: 1 }); S.go("Reserva.dc.html" + (p.slug === "valoracion" ? "" : "?interes=" + p.slug)); },
+      canAdd: p.slug !== "valoracion" && !!v.price,
+      addLabel: "Soy paciente en seguimiento · reservar " + COP(v.price || 0),
+      notice: p.slug === "valoracion" ? "La valoración se abona completa a tu tratamiento si lo inicias dentro del primer mes. Pagas el 100% al reservar; no hay devoluciones de dinero, pero puedes reprogramar con 24 horas de anticipación." : "Si es tu primera vez, empezamos por la valoración: en consulta definimos si este tratamiento es para ti. Solo pacientes en seguimiento pueden reservarlo directamente en línea.",
+      added: this.state.added,
+      add: () => { S.addToCart({ id: v.id, slug: p.slug, type: "protocolo", qty: 1 }); self.setState({ added: true }); },
+      facts: p.facts.map(f => ({ k: f[0], v: f[1] })),
+      evalua: p.evalua.map((t, i) => ({ n: "0" + (i + 1), t: t })),
+      pasos: p.protocolo,
+      incluye: p.incluye,
+      avisos: p.avisos,
+      faq: p.faq,
+      hasExtra: !!p.que, que: p.que, zonasTxt: p.zonasTxt, noIndicado: p.noIndicado || [], contra: p.contra || [],
+      hasEtapas: !!(p.etapas && p.etapas.length), etapas: p.etapas || [],
+      marcasInfo: p.marcasInfo || [], eleccion: p.eleccion || "", presentacion: p.presentacion, trazabilidad: p.trazabilidad, combos: p.combos || [],
+      caseTitle: p.caseTitle, caseNote: p.caseNote, caseContext: p.caseContext,
+      caseProtocol: p.caseProtocol, caseElapsed: p.caseElapsed,
+      caseBefore: p.caseBefore, caseAfter: p.caseAfter,
+      related: S.PRODUCTS.filter(x => x.slug !== p.slug && (x.needs.some(n => p.needs.indexOf(n) >= 0) || x.catKey === "valoracion")).slice(0, 3).map(x => ({
+        name: x.name, cat: x.cat, img: x.img, href: "Tratamiento.dc.html?p=" + x.slug, fromLabel: S.fromLabel(x)
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

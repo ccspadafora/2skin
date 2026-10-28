@@ -1,0 +1,15 @@
+:root{
+  /* 4px base */
+  --space-1:4px;  --space-2:8px;   --space-3:12px;  --space-4:16px;
+  --space-5:24px; --space-6:32px;  --space-7:40px;  --space-8:48px;
+  --space-9:64px; --space-10:80px; --space-11:96px; --space-12:120px;
+  --space-13:160px;
+
+  /* Vertical rhythm — desktop */
+  --section-standard:112px;
+  --section-hero:144px;
+  --section-compact:72px;
+}
+@media (max-width:768px){
+  :root{--section-standard:72px;--section-hero:88px;--section-compact:56px}
+}

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cita confirmada · 2skin</title>
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/borders.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/motion.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/base.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/css/components.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/styles.css">
+  <script src="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/_ds_bundle.js"></script>
+  <script src="site.js"></script>
+  <style>
+    body { margin: 0; background: var(--cream); color: var(--charcoal); font-family: var(--font-ui); }
+    a { color: var(--charcoal); }
+    a:hover { color: var(--color-accent-strong); }
+    .ic { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.05; stroke-linecap: round; stroke-linejoin: round; flex: 0 0 auto; }
+    .g-half { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 56px; align-items: start; }
+    @media (max-width: 980px) { .g-half { grid-template-columns: minmax(0,1fr); gap: 32px; } }
+  </style>
+</helmet>
+
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: var(--cream);">
+  <dc-import name="SiteHeader" active="" hint-size="100%,84px"></dc-import>
+
+  <main style="flex: 1 1 auto; padding: 96px 0 112px;">
+    <div class="container g-half">
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+        <span style="display: inline-flex; align-items: center; justify-content: center; width: 52px; height: 52px; border-radius: 999px; background: var(--color-accent-soft); color: var(--charcoal);">
+          <svg class="ic" style="width: 26px; height: 26px;"><use href="#i-check"></use></svg>
+        </span>
+        <p class="tsk-eyebrow">Reserva confirmada</p>
+        <h1 class="display-l" style="margin: 0; max-width: 14ch;">Tu cita está agendada.</h1>
+        <p class="body-l" style="margin: 0; color: var(--color-text-secondary); max-width: 44ch;">Te enviamos la confirmación y tu comprobante de pago. Por WhatsApp te recordamos la cita 24 horas antes —para que confirmes tu asistencia— y 2 horas antes.</p>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <a href="Cuenta.dc.html" class="tsk-btn tsk-btn--primary" style="text-decoration: none;"><span class="tsk-btn__label">Ver mi protocolo</span></a>
+          <a href="Inicio.dc.html" class="tsk-btn tsk-btn--secondary" style="text-decoration: none;"><span class="tsk-btn__label">Volver al inicio</span></a>
+        </div>
+        <figure class="tsk-media tsk-media--landscape" style="margin: 16px 0 0;"><img src="img/agenda.jpg" alt="Consultorio 2Skin en Medicenter"></figure>
+      </div>
+
+      <div style="background: #FFFFFF; border: 1px solid var(--color-border-subtle); border-radius: 8px; padding: 32px; display: flex; flex-direction: column; gap: 28px;">
+        <div style="display: flex; flex-direction: column;">
+          <sc-for list="{{ facts }}" as="f" hint-placeholder-count="6">
+            <div style="display: flex; justify-content: space-between; gap: 20px; padding: 14px 0; border-bottom: 1px solid var(--color-border-subtle);">
+              <span class="caption" style="text-transform: uppercase; letter-spacing: .05em; color: var(--color-text-muted);">{{ f.k }}</span>
+              <span class="body-s" style="text-align: right; max-width: 26ch;">{{ f.v }}</span>
+            </div>
+          </sc-for>
+        </div>
+
+        <sc-if value="{{ hasLines }}" hint-placeholder-val="{{ false }}">
+          <div>
+            <p class="tsk-eyebrow" style="margin: 0 0 14px;">Detalle</p>
+            <div style="display: flex; flex-direction: column;">
+              <sc-for list="{{ lines }}" as="l" hint-placeholder-count="2">
+                <div style="display: flex; justify-content: space-between; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--color-border-subtle);">
+                  <span class="body-s" style="color: var(--color-text-secondary);">{{ l.name }}</span>
+                  <span class="body-s">{{ l.total }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <div>
+          <p class="tsk-eyebrow" style="margin: 0 0 16px;">Antes de tu cita</p>
+          <div style="display: flex; flex-direction: column;">
+            <sc-for list="{{ before }}" as="b" hint-placeholder-count="4">
+              <div style="display: flex; gap: 14px; padding: 10px 0; align-items: flex-start;">
+                <svg class="ic" style="width: 16px; height: 16px; color: var(--sage); margin-top: 3px;"><use href="{{ b.icon }}"></use></svg>
+                <span class="body-s" style="color: var(--color-text-secondary);">{{ b.t }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="border-top: 1px solid var(--color-border-subtle); padding-top: 20px; display: flex; flex-direction: column; gap: 10px;">
+          <span class="body-s" style="display: flex; align-items: center; gap: 10px;"><svg class="ic" style="color: var(--sage);"><use href="#i-pin"></use></svg>{{ place }}</span>
+          <span class="body-s" style="display: flex; align-items: center; gap: 10px;"><svg class="ic" style="color: var(--sage);"><use href="#i-chat"></use></svg>Para reprogramar, avísanos con al menos 24 horas de anticipación</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <dc-import name="SiteFooter" hint-size="100%,640px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { tick: 0 };
+  componentDidMount() {
+    if (!window.SITE) { setTimeout(() => this.componentDidMount(), 60); return; }
+    this.setState({ tick: 1 });
+  }
+
+  renderVals() {
+    const S = window.SITE;
+    if (!S) return {};
+    const o = S.readOrder();
+    const COP = S.COP;
+    const facts = o ? [
+      { k: "Reserva", v: o.ref },
+      { k: "Cita", v: o.appointment },
+      { k: "Modalidad", v: o.virtual ? "Virtual · Google Meet" : "Presencial · " + S.SEDE },
+      { k: "Profesional", v: o.doctor },
+      o.interes ? { k: "Interés", v: o.interes } : null,
+      { k: "Medio de pago", v: o.pay + " · Bold" },
+      { k: "Documento", v: o.factura ? "Factura electrónica" : "Comprobante de pago" },
+      { k: "Total pagado", v: COP(o.total) }
+    ].filter(Boolean) : [
+      { k: "Reserva", v: "2SK-24817" },
+      { k: "Cita", v: "Viernes 6 de noviembre · 8:30 a. m." },
+      { k: "Modalidad", v: "Presencial · " + S.SEDE },
+      { k: "Profesional", v: "Médica asignada según disponibilidad" },
+      { k: "Total pagado", v: COP(S.VALORACION) }
+    ];
+    return {
+      facts: facts,
+      hasLines: !!(o && o.lines && o.lines.length),
+      lines: o && o.lines ? o.lines.map(l => ({ name: l.name + (l.qty > 1 ? " × " + l.qty : ""), total: COP(l.total) })) : [],
+      place: o && o.virtual ? "Google Meet · enlace por WhatsApp y correo" : S.SEDE,
+      before: (o && o.virtual ? [
+        { icon: "#i-doc", t: "Envía antes de la cita el formulario de historia clínica con fotos, videos y los productos de tu rutina en casa." },
+        { icon: "#i-clock", t: "Conéctate a la hora exacta desde un lugar con buena luz." }
+      ] : [
+        { icon: "#i-clock", t: "Llega 10 minutos antes. Tienes 15 minutos de tolerancia; después, el procedimiento queda sujeto a disponibilidad." },
+        { icon: "#i-doc", t: "Trae tus paraclínicos recientes y la lista de tus medicamentos." },
+        { icon: "#i-droplet", t: "Si puedes, llega sin maquillaje." }
+      ]).concat([
+        { icon: "#i-shield", t: "Si estás en embarazo o lactancia, avísanos antes de la cita." },
+        { icon: "#i-calendar", t: "Cancela o reprograma con al menos 24 horas: tu pago se mantiene abonado." }
+      ])
+    };
+  }
+}
+</script>
+</body>
+</html>

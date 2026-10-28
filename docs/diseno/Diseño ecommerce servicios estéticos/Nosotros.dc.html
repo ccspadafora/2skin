@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nosotros · 2skin</title>
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/borders.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/motion.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/base.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/css/components.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/styles.css">
+  <script src="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/_ds_bundle.js"></script>
+  <script src="site.js"></script>
+  <style>
+    body { margin: 0; background: var(--cream); color: var(--charcoal); font-family: var(--font-ui); }
+    a { color: var(--charcoal); }
+    a:hover { color: var(--color-accent-strong); }
+    .ic { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.05; stroke-linecap: round; stroke-linejoin: round; flex: 0 0 auto; }
+    .g-half { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 56px; align-items: start; }
+    .g-split { display: grid; grid-template-columns: 5fr 7fr; gap: 64px; align-items: center; }
+    @media (max-width: 980px) { .g-half, .g-split { grid-template-columns: minmax(0,1fr); gap: 32px; } }
+  </style>
+</helmet>
+
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: var(--cream);">
+  <dc-import name="SiteHeader" active="nosotros" hint-size="100%,84px"></dc-import>
+
+  <main style="flex: 1 1 auto;">
+    <section style="padding: 0;">
+      <figure class="tsk-media" style="margin: 0; aspect-ratio: 24 / 7; border-radius: 0;">
+        <img src="img/hero-nosotros.jpg" alt="2Skin, Bogotá">
+      </figure>
+    </section>
+
+    <section style="padding: 56px 0 96px;">
+      <div class="container g-split">
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          <p class="tsk-eyebrow">Nuestra historia</p>
+          <h1 class="h1" style="margin: 0; max-width: 16ch;">Primero evaluamos. Después proponemos.</h1>
+          <p class="body-l" style="margin: 0; color: var(--color-text-secondary); max-width: 44ch;">2Skin nace de dos médicas estéticas apasionadas por la calidad de la piel. La idea inicia a finales de 2025 como un consultorio de medicina estética; en 2026 madura hacia algo más integral y con un enfoque específico, y así nace el concepto de 2Skin.</p>
+          <p class="body" style="margin: 0; color: var(--color-text-secondary); max-width: 46ch;">Decidimos abrir 2Skin con la convicción de crear un espacio donde los pacientes se sientan escuchados y acompañados, y construyan hábitos sostenibles en el tiempo. En 2Skin no solo hacemos tratamientos: buscamos mejorar la calidad de vida, porque una piel saludable es una vida saludable.</p>
+        </div>
+        <figure class="tsk-media tsk-media--landscape" style="margin: 0;"><img src="img/espacio-1.jpg" alt="Espacio clínico 2skin"></figure>
+      </div>
+    </section>
+
+    <section style="background: var(--charcoal); color: var(--cream); padding: 112px 0;" class="tsk-on-dark">
+      <div class="container">
+        <blockquote style="margin: 0 0 56px; font-family: var(--font-display); font-size: clamp(2rem, 3.4vw, 2.6rem); line-height: 1.12; max-width: 22ch;">No hacemos más. Hacemos lo que tu piel necesita.</blockquote>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 40px;">
+          <sc-for list="{{ principios }}" as="p" hint-placeholder-count="3">
+            <div style="display: flex; flex-direction: column; gap: 12px; border-top: 1px solid var(--color-border-inverse); padding-top: 20px;">
+              <svg class="ic" style="color: var(--sage);"><use href="{{ p.icon }}"></use></svg>
+              <h2 class="body-l" style="margin: 0;">{{ p.t }}</h2>
+              <p class="body-s" style="margin: 0; color: var(--color-text-inverse-secondary);">{{ p.b }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding: 104px 0 0;">
+      <div class="container">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; border-bottom: 1px solid var(--color-border-subtle); padding-bottom: 72px;">
+          <div>
+            <p class="tsk-eyebrow">Qué no hacemos</p>
+            <h2 class="h2" style="margin: 12px 0 0; max-width: 14ch;">Decir que no también es criterio.</h2>
+          </div>
+          <div style="display: flex; flex-direction: column;">
+            <sc-for list="{{ noHacemos }}" as="x" hint-placeholder-count="3">
+              <div style="display: flex; gap: 16px; padding: 18px 0; border-top: 1px solid var(--color-border-subtle); align-items: flex-start;">
+                <svg class="ic" style="color: var(--sage); margin-top: 2px;"><use href="#i-minus"></use></svg>
+                <div>
+                  <h3 class="body" style="margin: 0 0 4px; font-weight: 500;">{{ x.t }}</h3>
+                  <p class="body-s" style="margin: 0; color: var(--color-text-secondary);">{{ x.b }}</p>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding: 72px 0 104px;">
+      <div class="container">
+        <p class="tsk-eyebrow">El equipo</p>
+        <h2 class="h2" style="margin: 12px 0 48px; max-width: 22ch;">Dos médicas. Ambas evalúan, indican y aplican.</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px 32px;">
+          <sc-for list="{{ team }}" as="t" hint-placeholder-count="2">
+            <article style="display: flex; flex-direction: column; gap: 16px;">
+              <figure class="tsk-media tsk-media--portrait" style="margin: 0;"><img src="{{ t.img }}" alt="{{ t.name }}"></figure>
+              <div>
+                <h3 class="h4" style="margin: 0 0 4px;">{{ t.name }}</h3>
+                <p class="caption" style="margin: 0; text-transform: uppercase; letter-spacing: .05em; color: var(--color-text-muted);">{{ t.role }}</p>
+              </div>
+              <p class="body-s" style="margin: 0; color: var(--color-text-secondary);">{{ t.fullName }} · {{ t.creds }}</p>
+              <p class="body-s" style="margin: 0; color: var(--color-text-secondary); border-top: 1px solid var(--color-border-subtle); padding-top: 14px;">{{ t.bio }}</p>
+              <p class="caption" style="margin: 0; text-transform: uppercase; letter-spacing: .05em; color: var(--color-text-muted);">{{ t.since }}</p>
+              <p class="body-s" style="margin: 0; color: var(--color-text-secondary);"><span style="color: var(--charcoal);">Realiza:</span> {{ t.tx }}</p>
+              <a href="Reserva.dc.html" class="tsk-btn tsk-btn--text" style="text-decoration: none; align-self: flex-start;"><span class="tsk-btn__label">{{ t.cta }}</span><span class="tsk-btn__arrow" aria-hidden="true">→</span></a>
+            </article>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding: 0 0 104px;">
+      <div class="container g-half">
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <p class="tsk-eyebrow">La sede</p>
+          <h2 class="h2" style="margin: 0; max-width: 18ch;">Un espacio clínico, no un spa.</h2>
+          <p class="body" style="margin: 0; color: var(--color-text-secondary); max-width: 42ch;">Atendemos en consultorios de Medicenter, al norte de Bogotá. Solo usamos productos con registro INVIMA, que te mostramos antes de cada aplicación.</p>
+          <div style="display: flex; flex-direction: column; margin-top: 8px;">
+            <sc-for list="{{ sede }}" as="s" hint-placeholder-count="4">
+              <div style="display: flex; gap: 14px; padding: 14px 0; border-top: 1px solid var(--color-border-subtle); align-items: flex-start;">
+                <svg class="ic" style="color: var(--sage); margin-top: 2px;"><use href="{{ s.icon }}"></use></svg>
+                <span class="body-s">{{ s.t }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <a href="Reserva.dc.html" class="tsk-btn tsk-btn--primary" style="text-decoration: none; align-self: flex-start; margin-top: 12px;"><span class="tsk-btn__label">Agendar valoración</span></a>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px;">
+          <figure class="tsk-media tsk-media--portrait" style="margin: 0;"><img src="img/espacio-2.jpg" alt="Consultorio 2skin"></figure>
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <figure class="tsk-media tsk-media--square" style="margin: 0;"><img src="img/clinica-2.jpg" alt="Sala de espera"></figure>
+            <figure class="tsk-media tsk-media--square" style="margin: 0;"><img src="img/clinica-4.jpg" alt="Insumos con trazabilidad"></figure>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dc-import name="SiteFooter" hint-size="100%,640px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { tick: 0 };
+  componentDidMount() { if (!window.SITE) setTimeout(() => this.setState({ tick: 1 }), 80); }
+
+  renderVals() {
+    const S = window.SITE;
+    if (!S) return {};
+    return {
+      team: S.TEAM,
+      principios: [
+        { icon: "#i-doc", t: "Evaluación", b: "Historia clínica completa: antecedentes de piel, enfermedades crónicas, hábitos de vida y paraclínicos, más examen físico completo de la piel." },
+        { icon: "#i-mesh", t: "Decisión", b: "Con esa información llegamos a un diagnóstico y construimos un tratamiento integral: protocolo individualizado con rutina en casa, suplementación, hábitos de vida y tratamientos en consultorio." },
+        { icon: "#i-shield", t: "Casos que rechazamos", b: "Cambios no coherentes con tu estructura facial, expectativas no realistas, pacientes con indicación quirúrgica y quienes no quieren comprometerse con el tratamiento y solo buscan cambios inmediatos." }
+      ],
+      noHacemos: [
+        { t: "Rinomodelación", b: "Si buscas un cambio estructural de la nariz, la mejor alternativa es la cirugía, y una rinomodelación previa puede afectar ese resultado." },
+        { t: "Hilos tensores", b: "Resultados limitados, de poca duración, sin beneficios adicionales y, en la mayoría de casos, generan fibrosis." },
+        { t: "Procedimientos que comprometan tu seguridad", b: "Productos sin registro INVIMA, vencidos, sin estudios o con resultados poco favorables." }
+      ],
+      sede: [
+        { icon: "#i-pin", t: "Medicenter · Calle 120a #7-62, Bogotá" },
+        { icon: "#i-clock", t: "Atención solo con cita previa · no trabajamos festivos" },
+        { icon: "#i-chat", t: "Valoración también virtual, por Google Meet" },
+        { icon: "#i-lock", t: "Datos de salud protegidos conforme a la Ley 1581 de 2012" }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

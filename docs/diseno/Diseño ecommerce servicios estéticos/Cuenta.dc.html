@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mi piel · 2skin</title>
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/borders.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/motion.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/base.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/css/components.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/styles.css">
+  <script src="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/_ds_bundle.js"></script>
+  <script src="site.js"></script>
+  <style>
+    body { margin: 0; background: var(--cream); color: var(--charcoal); font-family: var(--font-ui); }
+    a { color: var(--charcoal); }
+    a:hover { color: var(--color-accent-strong); }
+    .ic { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.05; stroke-linecap: round; stroke-linejoin: round; flex: 0 0 auto; }
+    .g-cart { display: grid; grid-template-columns: minmax(0,1fr) 372px; gap: 52px; align-items: start; }
+    .g-half { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 56px; align-items: start; }
+    .tl { display: grid; grid-template-columns: 136px minmax(0,1fr); gap: 24px; }
+    @media (max-width: 980px) { .g-cart, .g-half { grid-template-columns: minmax(0,1fr); gap: 32px; } .tl { grid-template-columns: minmax(0,1fr); gap: 8px; } }
+  </style>
+</helmet>
+
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: var(--cream);">
+  <dc-import name="SiteHeader" active="" hint-size="100%,84px"></dc-import>
+
+  <main style="flex: 1 1 auto; padding: 48px 0 112px;">
+    <div class="container">
+      <p class="tsk-eyebrow" style="display: flex; align-items: center; gap: 10px;"><svg class="ic" style="width: 16px; height: 16px; color: var(--sage);"><use href="#i-user"></use></svg>Mi piel</p>
+      <h1 class="h1" style="margin: 12px 0 8px;">Hola, Daniela.</h1>
+      <p class="body" style="margin: 0 0 40px; color: var(--color-text-secondary); max-width: 48ch;">Tu protocolo de calidad de piel va en el mes 4 de 12. Aquí está la evolución, lo que viene y lo que conviene mantener.</p>
+
+      <div style="display: flex; gap: 4px; flex-wrap: wrap; border-bottom: 1px solid var(--color-border-subtle); margin-bottom: 48px;">
+        <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="4">
+          <button onClick="{{ t.pick }}" style="min-height: 48px; padding: 0 16px; display: flex; align-items: center; gap: 9px; background: transparent; border: 0; border-bottom: 2px solid {{ t.border }}; font-family: var(--font-ui); font-size: 15px; color: {{ t.fg }}; cursor: pointer;">
+            <svg class="ic" style="width: 17px; height: 17px;"><use href="{{ t.icon }}"></use></svg>{{ t.label }}
+          </button>
+        </sc-for>
+      </div>
+
+      <sc-if value="{{ isProtocolo }}" hint-placeholder-val="{{ true }}">
+        <div class="g-cart">
+          <div style="display: flex; flex-direction: column;">
+            <sc-for list="{{ timeline }}" as="e" hint-placeholder-count="5">
+              <div class="tl" style="padding: 24px 0; border-top: 1px solid var(--color-border-subtle);">
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                  <span class="caption" style="text-transform: uppercase; letter-spacing: .05em; color: var(--color-text-muted);">{{ e.date }}</span>
+                  <span class="body-s" style="display: flex; align-items: center; gap: 8px; color: {{ e.color }};"><svg class="ic" style="width: 15px; height: 15px;"><use href="{{ e.icon }}"></use></svg>{{ e.state }}</span>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                  <h2 class="body-l" style="margin: 0;">{{ e.title }}</h2>
+                  <p class="body-s" style="margin: 0; color: var(--color-text-secondary); max-width: 54ch;">{{ e.body }}</p>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+          <aside style="display: flex; flex-direction: column; gap: 24px;">
+            <div style="background: var(--charcoal); color: var(--cream); border-radius: 8px; padding: 28px;" class="tsk-on-dark">
+              <p class="tsk-eyebrow" style="margin: 0 0 14px; color: var(--sage); display: flex; align-items: center; gap: 9px;"><svg class="ic" style="width: 16px; height: 16px;"><use href="#i-calendar"></use></svg>Próxima sesión</p>
+              <p style="margin: 0 0 6px; font-family: var(--font-display); font-size: 26px; line-height: 1.1;">Viernes 25 de septiembre</p>
+              <p class="body-s" style="margin: 0 0 18px; color: var(--color-text-inverse-secondary);">10:30 a. m. · Medicenter · Dra. Laura Vacca</p>
+              <p class="body-s" style="margin: 0 0 20px; color: var(--color-text-inverse-secondary);">Sesión 2 de 3 · Bioestimulador de colágeno</p>
+              <a href="Reserva.dc.html" class="tsk-btn tsk-btn--text" style="text-decoration: none;"><span class="tsk-btn__label">Reprogramar</span><span class="tsk-btn__arrow" aria-hidden="true">→</span></a>
+            </div>
+            <div style="background: #FFFFFF; border: 1px solid var(--color-border-subtle); border-radius: 8px; padding: 28px;">
+              <p class="tsk-eyebrow" style="margin: 0 0 16px; display: flex; align-items: center; gap: 9px;"><svg class="ic" style="width: 16px; height: 16px; color: var(--sage);"><use href="#i-refresh"></use></svg>Mantenimiento sugerido</p>
+              <div style="display: flex; flex-direction: column;">
+                <sc-for list="{{ reminders }}" as="r" hint-placeholder-count="3">
+                  <div style="display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--color-border-subtle);">
+                    <span class="body-s">{{ r.what }}</span>
+                    <span class="body-s" style="color: var(--color-text-secondary); white-space: nowrap;">{{ r.when }}</span>
+                  </div>
+                </sc-for>
+              </div>
+              <p class="caption" style="margin: 16px 0 0;">Las frecuencias son estimadas y se ajustan en cada control.</p>
+            </div>
+          </aside>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isEvolucion }}" hint-placeholder-val="{{ false }}">
+        <div>
+          <div class="g-half" style="margin-bottom: 56px;">
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <h2 class="h3" style="margin: 0; max-width: 20ch;">Tu registro fotográfico.</h2>
+              <p class="body" style="margin: 0; color: var(--color-text-secondary); max-width: 44ch;">Fotografía estandarizada en cada control: misma luz, misma distancia, mismo encuadre. Es la única comparación que sirve.</p>
+              <p class="caption" style="margin: 0; max-width: 44ch;">Tus imágenes son parte de tu historia clínica y no se publican sin tu autorización escrita.</p>
+            </div>
+            <x-import component-from-global-scope="Ds2skinDesignSystem_023a03.BeforeAfter" before-src="img/antes-2.jpg" after-src="img/despues-2.jpg" context="Tu registro" protocol="Bioestimulador · sesión 1" elapsed="Mes 0 vs. mes 4" hint-size="100%,420px"></x-import>
+          </div>
+          <div style="border-top: 1px solid var(--color-border-subtle); padding-top: 32px;">
+            <p class="tsk-eyebrow" style="margin: 0 0 24px;">Indicadores del control de junio</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px;">
+              <sc-for list="{{ metrics }}" as="m" hint-placeholder-count="4">
+                <div style="background: #FFFFFF; border: 1px solid var(--color-border-subtle); border-radius: 8px; padding: 24px; display: flex; flex-direction: column; gap: 10px;">
+                  <svg class="ic" style="color: var(--sage);"><use href="{{ m.icon }}"></use></svg>
+                  <span class="caption" style="text-transform: uppercase; letter-spacing: .05em; color: var(--color-text-muted);">{{ m.k }}</span>
+                  <span style="font-family: var(--font-display); font-size: 26px; line-height: 1;">{{ m.v }}</span>
+                  <span class="body-s" style="color: var(--color-text-secondary);">{{ m.note }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <p class="caption" style="margin: 20px 0 0; max-width: 60ch;">Valoraciones clínicas subjetivas registradas por tu médica tratante. No son mediciones de laboratorio.</p>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isPedidos }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column;">
+          <sc-for list="{{ orders }}" as="o" hint-placeholder-count="4">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 20px; padding: 24px 0; border-top: 1px solid var(--color-border-subtle); align-items: center;">
+              <span class="caption" style="text-transform: uppercase; letter-spacing: .05em; color: var(--color-text-muted);">{{ o.ref }}</span>
+              <span class="body-s">{{ o.date }}</span>
+              <span class="body-s">{{ o.what }}</span>
+              <span class="body-s" style="display: flex; align-items: center; gap: 8px; color: {{ o.color }};"><svg class="ic" style="width: 15px; height: 15px;"><use href="{{ o.icon }}"></use></svg>{{ o.state }}</span>
+              <span class="body-s" style="text-align: right;">{{ o.total }}</span>
+            </div>
+          </sc-for>
+          <p class="caption" style="margin: 24px 0 0; border-top: 1px solid var(--color-border-subtle); padding-top: 20px;">Recibes comprobante de pago por cada reserva. La factura electrónica se emite si la solicitas.</p>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isCuidado }}" hint-placeholder-val="{{ false }}">
+        <div class="g-half">
+          <div>
+            <h2 class="h3" style="margin: 0 0 16px; max-width: 20ch;">Tu cuidado entre sesiones.</h2>
+            <p class="body" style="margin: 0 0 32px; color: var(--color-text-secondary); max-width: 44ch;">Lo que haces en casa sostiene el resultado clínico. Estas son las indicaciones que te entregó tu médica tratante.</p>
+            <div style="display: flex; flex-direction: column;">
+              <sc-for list="{{ care }}" as="h" hint-placeholder-count="4">
+                <div style="display: flex; gap: 16px; padding: 16px 0; border-top: 1px solid var(--color-border-subtle); align-items: flex-start;">
+                  <svg class="ic" style="color: var(--sage); margin-top: 2px;"><use href="{{ h.icon }}"></use></svg>
+                  <div>
+                    <span class="caption" style="display: block; text-transform: uppercase; letter-spacing: .05em; color: var(--color-text-muted);">{{ h.when }}</span>
+                    <span class="body-s" style="display: block; margin-top: 4px;">{{ h.what }}</span>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <figure class="tsk-media tsk-media--square" style="margin: 0;"><img src="img/skincare.jpg" alt="Rutina domiciliaria 2skin"></figure>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+  </main>
+
+  <dc-import name="SiteFooter" hint-size="100%,640px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { tab: "protocolo", added: {}, tick: 0 };
+  componentDidMount() { if (!window.SITE) setTimeout(() => this.setState({ tick: 1 }), 80); }
+
+  renderVals() {
+    const S = window.SITE;
+    if (!S) return {};
+    const self = this, st = this.state, COP = S.COP;
+    const tabs = [
+      { id: "protocolo", label: "Mi protocolo", icon: "#i-doc" },
+      { id: "evolucion", label: "Evolución", icon: "#i-eye" },
+      { id: "pedidos", label: "Pagos", icon: "#i-cart" },
+      { id: "cuidado", label: "Indicaciones", icon: "#i-droplet" }
+    ];
+    return {
+      tabs: tabs.map(t => ({
+        label: t.label, icon: t.icon,
+        border: st.tab === t.id ? "var(--charcoal)" : "transparent",
+        fg: st.tab === t.id ? "var(--charcoal)" : "var(--color-text-secondary)",
+        pick: () => self.setState({ tab: t.id })
+      })),
+      isProtocolo: st.tab === "protocolo",
+      isEvolucion: st.tab === "evolucion",
+      isPedidos: st.tab === "pedidos",
+      isCuidado: st.tab === "cuidado",
+      timeline: [
+        { date: "12 may 2026", state: "Completado", color: "var(--color-success)", icon: "#i-check", title: "Valoración médica", body: "Prioridad definida: firmeza y calidad de piel. Plan a 12 meses en tres etapas." },
+        { date: "26 may 2026", state: "Completado", color: "var(--color-success)", icon: "#i-check", title: "Bioestimulador · sesión 1", body: "Dos viales. Masaje protocolizado indicado por cinco días. Sin eventos adversos." },
+        { date: "16 jun 2026", state: "Completado", color: "var(--color-success)", icon: "#i-check", title: "Control", body: "Respuesta inicial adecuada. Se confirma segunda sesión a los tres meses." },
+        { date: "25 sep 2026", state: "Agendado", color: "var(--charcoal)", icon: "#i-calendar", title: "Bioestimulador · sesión 2", body: "Sesión 2 de 3. Recordatorio por WhatsApp 24 horas y 2 horas antes." },
+        { date: "Dic 2026", state: "Estimado", color: "var(--color-text-muted)", icon: "#i-clock", title: "Evaluación de neocolagénesis", body: "Comparación fotográfica y decisión sobre mantenimiento." }
+      ],
+      reminders: [
+        { what: "Toxina · tercio superior", when: "Cada 4 meses · feb 2027" },
+        { what: "Hidratación profunda", when: "Refuerzo en ene 2027" },
+      ],
+      metrics: [
+        { icon: "#i-mesh", k: "Firmeza percibida", v: "+2 niveles", note: "Escala clínica interna de 5 puntos." },
+        { icon: "#i-droplet", k: "Hidratación", v: "Estable", note: "Se mantiene con la rutina actual." },
+        { icon: "#i-sun", k: "Pigmento", v: "Sin cambio", note: "No es objetivo de este protocolo." },
+        { icon: "#i-clock", k: "Adherencia", v: "Alta", note: "Sin sesiones aplazadas hasta ahora." }
+      ],
+      orders: [
+        { ref: "2SK-24817", date: "7 sep 2026", what: "Bioestimulador · sesión 2", state: "Agendado", color: "var(--charcoal)", icon: "#i-calendar", total: COP(2600000) },
+                { ref: "2SK-23140", date: "26 may 2026", what: "Bioestimulador · sesión 1", state: "Completado", color: "var(--color-success)", icon: "#i-check", total: COP(2600000) },
+        { ref: "2SK-22908", date: "12 may 2026", what: "Valoración médica", state: "Abonado al protocolo", color: "var(--color-success)", icon: "#i-refresh", total: COP(S.VALORACION) }
+      ],
+      care: [
+        { icon: "#i-clock", when: "Después de la sesión", what: "Masaje con el tiempo y la frecuencia que te indicó tu médica." },
+        { icon: "#i-refresh", when: "24 horas", what: "Sin ejercicio." },
+        { icon: "#i-flask", when: "48 horas", what: "Sin alcohol." },
+        { icon: "#i-droplet", when: "3 días", what: "Sin piscina, sauna ni jacuzzi." },
+        { icon: "#i-sun", when: "Siempre", what: "Sin sol directo; protector solar todos los días." }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

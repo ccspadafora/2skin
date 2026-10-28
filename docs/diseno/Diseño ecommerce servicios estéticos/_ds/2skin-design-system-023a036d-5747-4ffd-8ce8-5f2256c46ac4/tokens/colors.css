@@ -1,0 +1,48 @@
+:root{
+  /* Brand palette — official, only these four */
+  --sage:#A6B2A0;
+  --silver:#D7D9D3;
+  --charcoal:#1E1E1E;
+  --cream:#F6F4F0;
+
+  /* Backgrounds / surfaces */
+  --color-bg-primary:var(--cream);
+  --color-bg-surface:#FFFFFF;
+  --color-bg-muted:var(--silver);
+  --color-bg-inverse:var(--charcoal);
+
+  /* Text */
+  --color-text-primary:var(--charcoal);
+  --color-text-secondary:rgba(30,30,30,.68);
+  --color-text-muted:rgba(30,30,30,.50);
+  --color-text-inverse:var(--cream);
+  --color-text-inverse-secondary:rgba(246,244,240,.72);
+
+  /* Accent — 5% of the surface, never a large field */
+  --color-accent:var(--sage);
+  --color-accent-soft:color-mix(in srgb,#A6B2A0 22%,#F6F4F0);
+  --color-accent-strong:color-mix(in srgb,#A6B2A0 72%,#1E1E1E);
+  --color-accent-ink:var(--charcoal);
+
+  /* Borders */
+  --color-border:rgba(30,30,30,.14);
+  --color-border-subtle:rgba(30,30,30,.12);
+  --color-border-default:rgba(30,30,30,.18);
+  --color-border-strong:rgba(30,30,30,.32);
+  --color-border-inverse:rgba(246,244,240,.24);
+
+  /* Overlays */
+  --color-overlay:rgba(30,30,30,.56);
+  --color-overlay-soft:rgba(30,30,30,.28);
+
+  /* Semantic — discreet, system states only */
+  --color-error:#8A3B34;
+  --color-error-soft:color-mix(in srgb,#8A3B34 10%,#F6F4F0);
+  --color-success:#53674F;
+  --color-success-soft:color-mix(in srgb,#53674F 10%,#F6F4F0);
+
+  /* Focus */
+  --color-focus:var(--sage);
+  --focus-ring:2px solid var(--sage);
+  --focus-ring-offset:3px;
+}

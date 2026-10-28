@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bonos de regalo · 2skin</title>
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/borders.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/motion.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/tokens/base.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/css/components.css">
+  <link rel="stylesheet" href="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/styles.css">
+  <script src="_ds/2skin-design-system-023a036d-5747-4ffd-8ce8-5f2256c46ac4/_ds_bundle.js"></script>
+  <script src="site.js"></script>
+  <style>
+    body { margin: 0; background: var(--cream); color: var(--charcoal); font-family: var(--font-ui); }
+    a { color: var(--charcoal); }
+    a:hover { color: var(--color-accent-strong); }
+    .ic { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.05; stroke-linecap: round; stroke-linejoin: round; flex: 0 0 auto; }
+    .g-half { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 56px; align-items: start; }
+    @media (max-width: 980px) { .g-half { grid-template-columns: minmax(0,1fr); gap: 32px; } }
+  </style>
+</helmet>
+
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: var(--cream);">
+  <dc-import name="SiteHeader" active="bonos" hint-size="100%,84px"></dc-import>
+
+  <main style="flex: 1 1 auto; padding: 48px 0 112px;">
+    <div class="container">
+      <p class="caption" style="margin: 0 0 20px; color: var(--color-text-muted);"><a href="Inicio.dc.html" style="text-decoration: none;">Inicio</a> · Bonos de regalo</p>
+
+      <div class="g-half" style="align-items: center;">
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          <p class="tsk-eyebrow" style="display: flex; align-items: center; gap: 10px;"><svg class="ic" style="width: 16px; height: 16px; color: var(--sage);"><use href="#i-gift"></use></svg>Bonos de regalo</p>
+          <h1 class="h1" style="margin: 0; max-width: 20ch;">Se regala un valor, no un procedimiento.</h1>
+          <p class="body-l" style="margin: 0; color: var(--color-text-secondary); max-width: 46ch;">Quien lo recibe pasa primero por valoración y decide con criterio médico qué hacer con él. Nadie debería recibir de regalo una indicación que no le corresponde.</p>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <span class="body-s" style="display: flex; align-items: center; gap: 10px;"><svg class="ic" style="color: var(--sage);"><use href="#i-clock"></use></svg>Vigencia de 60 días desde la compra</span>
+            <span class="body-s" style="display: flex; align-items: center; gap: 10px;"><svg class="ic" style="color: var(--sage);"><use href="#i-doc"></use></svg>Desde $500.000 · valor libre por encima</span>
+            <span class="body-s" style="display: flex; align-items: center; gap: 10px;"><svg class="ic" style="color: var(--sage);"><use href="#i-check"></use></svg>Transferible antes de la valoración</span>
+          </div>
+        </div>
+        <figure class="tsk-media tsk-media--landscape" style="margin: 0;"><img src="img/giftcard.jpg" alt="Bono de regalo 2skin"></figure>
+      </div>
+
+      <section style="margin-top: 80px;">
+        <h2 class="h3" style="margin: 0 0 32px;">Elige el valor</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px;">
+          <sc-for list="{{ bonos }}" as="b" hint-placeholder-count="3">
+            <article style="background: #FFFFFF; border: 1px solid var(--color-border-subtle); border-radius: 8px; padding: 28px; display: flex; flex-direction: column; gap: 16px;">
+              <svg class="ic" style="color: var(--sage);"><use href="#i-gift"></use></svg>
+              <h3 style="margin: 0; font-family: var(--font-display); font-size: 30px; line-height: 1;">{{ b.priceLabel }}</h3>
+              <p class="body-s" style="margin: 0; color: var(--color-text-secondary);">{{ b.detail }}</p>
+              <button onClick="{{ b.add }}" class="tsk-btn tsk-btn--secondary" style="margin-top: auto;"><span class="tsk-btn__label">{{ b.cta }}</span></button>
+            </article>
+          </sc-for>
+        </div>
+      </section>
+
+      <section style="margin-top: 72px;">
+        <div class="g-half">
+          <div>
+            <p class="tsk-eyebrow">Cómo funciona</p>
+            <h2 class="h3" style="margin: 12px 0 0; max-width: 20ch;">Tres pasos, y la consulta define el resto.</h2>
+          </div>
+          <div style="display: flex; flex-direction: column;">
+            <sc-for list="{{ pasos }}" as="s" hint-placeholder-count="3">
+              <div style="display: flex; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--color-border-subtle); align-items: flex-start;">
+                <svg class="ic" style="color: var(--sage); margin-top: 2px;"><use href="{{ s.icon }}"></use></svg>
+                <div>
+                  <h3 class="body" style="margin: 0 0 4px; font-weight: 500;">{{ s.title }}</h3>
+                  <p class="body-s" style="margin: 0; color: var(--color-text-secondary);">{{ s.body }}</p>
+                </div>
+              </div>
+            </sc-for>
+            <p class="caption" style="margin: 20px 0 0;">Transferible solo antes de la valoración. Si el tratamiento indicado supera el valor del bono, pagas la diferencia. No se redime en efectivo ni tiene devolución. Cualquier procedimiento requiere valoración médica previa.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <dc-import name="SiteFooter" hint-size="100%,640px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { added: {}, tick: 0 };
+  componentDidMount() { if (!window.SITE) setTimeout(() => this.setState({ tick: 1 }), 80); }
+
+  renderVals() {
+    const S = window.SITE;
+    if (!S) return {};
+    const self = this, COP = S.COP;
+    return {
+      bonos: S.BONOS.map(b => ({
+        priceLabel: b.id === "bo-libre" ? "Desde " + COP(b.price) : COP(b.price),
+        detail: b.detail,
+        cta: self.state.added[b.id] ? "Añadido" : "Añadir al carrito",
+        add: () => {
+          S.addToCart({ id: b.id, type: "bono", qty: 1 });
+          self.setState(s => ({ added: Object.assign({}, s.added, { [b.id]: true }) }));
+        }
+      })),
+      pasos: [
+        { icon: "#i-gift", title: "Compras el bono", body: "Recibes el bono digital con el valor y la vigencia de 60 días." },
+        { icon: "#i-calendar", title: "Se agenda la valoración", body: "El bono cubre la consulta médica ($90.000) y el saldo se abona al tratamiento que se indique." },
+        { icon: "#i-doc", title: "Se define el plan", body: "Con criterio médico, no con lo que estaba en promoción esa semana." }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

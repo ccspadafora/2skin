@@ -1,0 +1,14 @@
+:root{
+  --duration-fast:120ms; /* @kind other */
+  --duration-base:180ms; /* @kind other */
+  --duration-slow:320ms; /* @kind other */
+  --ease-standard:cubic-bezier(.2,.8,.2,1); /* @kind other */
+  --image-hover-scale:1.02; /* @kind other */
+  --reveal-offset:12px; /* @kind spacing */
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms !important;animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;scroll-behavior:auto !important;
+  }
+}

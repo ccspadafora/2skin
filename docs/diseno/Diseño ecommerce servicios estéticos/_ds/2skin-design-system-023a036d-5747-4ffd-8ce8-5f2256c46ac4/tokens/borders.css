@@ -1,0 +1,16 @@
+:root{
+  --radius-xs:2px;
+  --radius-sm:4px;   /* buttons, inputs */
+  --radius-md:8px;   /* cards */
+  --radius-lg:12px;
+  --radius-pill:999px;
+
+  --border-subtle:1px solid rgba(30,30,30,.12); /* @kind other */
+  --border-default:1px solid rgba(30,30,30,.18); /* @kind other */
+  --border-strong:1px solid rgba(30,30,30,.32); /* @kind other */
+  --border-inverse:1px solid rgba(246,244,240,.24); /* @kind other */
+
+  /* Shadows — only for functional hierarchy. Borders take priority. */
+  --shadow-sm:0 4px 12px rgba(30,30,30,.05);
+  --shadow-md:0 12px 32px rgba(30,30,30,.08);
+}
