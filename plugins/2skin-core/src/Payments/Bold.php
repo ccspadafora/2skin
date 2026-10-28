@@ -97,12 +97,18 @@ final class Bold {
 	}
 
 	/**
-	 * Bold carga su librería externa del botón en todas las páginas; solo hace falta donde se paga.
+	 * Bold carga su librería externa y sus scripts del pago en todas las páginas; solo hacen falta donde se paga.
 	 */
 	public static function limit_scripts(): void {
+		// Estilos de su panel de ajustes y de su widget de Elementor (el sitio no usa Elementor): sobran en el sitio público.
+		wp_dequeue_style( 'woocommerce_bold_gateway_form_css' );
+		wp_dequeue_style( 'bold-elementor-style' );
 		if ( function_exists( 'is_checkout' ) && is_checkout() ) {
 			return;
 		}
-		wp_dequeue_script( 'woocommerce_bold_payment_button_js' );
+		wp_dequeue_style( 'woocommerce_bold_gateway_css' );
+		foreach ( array( 'woocommerce_bold_payment_button_js', 'woocommerce_bold_checkout_web_component_js', 'woocommerce_bold_checkout_basic_js' ) as $handle ) {
+			wp_dequeue_script( $handle );
+		}
 	}
 }
