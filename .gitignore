@@ -13,3 +13,4 @@
 !/plugins/2skin-core/
 node_modules/
 *.log
+.DS_Store
