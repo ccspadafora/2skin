@@ -38,5 +38,8 @@ function tsk_setup(): void {
 
 	add_image_size( 'tsk-portrait', 720, 960, true );
 	add_image_size( 'tsk-landscape', 1200, 900, true );
+	// Versiones pequeñas con la misma proporción: WordPress las ofrece en srcset a pantallas y tarjetas angostas.
+	add_image_size( 'tsk-portrait-sm', 360, 480, true );
+	add_image_size( 'tsk-landscape-sm', 600, 450, true );
 }
 add_action( 'after_setup_theme', 'tsk_setup' );

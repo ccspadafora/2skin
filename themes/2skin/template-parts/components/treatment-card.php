@@ -31,6 +31,7 @@ $tsk_args = wp_parse_args(
 			'ratio'       => $tsk_args['ratio'],
 			'alt'         => $tsk_args['name'],
 			'size'        => 'tsk-landscape',
+			'sizes'       => '(max-width: 640px) calc(100vw - 32px), (max-width: 980px) 50vw, 420px',
 			'placeholder' => $tsk_args['name'],
 		)
 	);

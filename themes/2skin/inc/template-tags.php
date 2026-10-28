@@ -67,7 +67,7 @@ function tsk_asset( string $path ): string {
  * Marco de imagen con proporción de marca.
  *
  * @param int|string $image ID de adjunto o ruta en assets/img.
- * @param array      $args  ratio (square|portrait|landscape|wide|''), alt, size, class, placeholder.
+ * @param array      $args  ratio (square|portrait|landscape|wide|''), alt, size, class, placeholder, loading, sizes (atributo sizes del srcset).
  */
 function tsk_media( int|string $image, array $args = array() ): string {
 	$args    = wp_parse_args(
@@ -79,8 +79,11 @@ function tsk_media( int|string $image, array $args = array() ): string {
 			'class'       => '',
 			'placeholder' => __( 'Fotografía 2skin', '2skin' ),
 			'loading'     => 'lazy',
+			'sizes'       => '',
 		)
 	);
+	// La imagen que se ve al cargar (la de portada) se pide con prioridad.
+	$priority = 'eager' === $args['loading'] ? 'high' : 'auto';
 	$classes = array_filter( array( 'tsk-media', $args['ratio'] ? 'tsk-media--' . $args['ratio'] : '', $args['class'] ) );
 
 	if ( is_int( $image ) && $image > 0 ) {
@@ -88,13 +91,17 @@ function tsk_media( int|string $image, array $args = array() ): string {
 			$image,
 			$args['size'],
 			false,
-			array(
-				'alt'     => $args['alt'] ? $args['alt'] : (string) get_post_meta( $image, '_wp_attachment_image_alt', true ),
-				'loading' => $args['loading'],
+			array_filter(
+				array(
+					'alt'           => $args['alt'] ? $args['alt'] : (string) get_post_meta( $image, '_wp_attachment_image_alt', true ),
+					'loading'       => $args['loading'],
+					'fetchpriority' => $priority,
+					'sizes'         => $args['sizes'],
+				)
 			)
 		);
 	} elseif ( is_string( $image ) && '' !== $image ) {
-		$img = sprintf( '<img src="%s" alt="%s" loading="%s" decoding="async">', esc_url( tsk_asset( 'img/' . $image ) ), esc_attr( $args['alt'] ), esc_attr( $args['loading'] ) );
+		$img = sprintf( '<img src="%s" alt="%s" loading="%s" fetchpriority="%s" decoding="async">', esc_url( tsk_asset( 'img/' . $image ) ), esc_attr( $args['alt'] ), esc_attr( $args['loading'] ), esc_attr( $priority ) );
 	} else {
 		$img = '';
 	}
