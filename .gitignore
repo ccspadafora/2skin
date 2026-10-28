@@ -1,0 +1,15 @@
+/*
+!/.gitignore
+!/CLAUDE.md
+!/skills-lock.json
+!/.claude/
+/.claude/settings.local.json
+!/docs/
+!/themes/
+/themes/*
+!/themes/2skin/
+!/plugins/
+/plugins/*
+!/plugins/2skin-core/
+node_modules/
+*.log
